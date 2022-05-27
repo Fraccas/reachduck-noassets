@@ -64,9 +64,9 @@ async function hydrateUser(account: ReachAccount): Promise<ConnectedUserData> {
   const stdlib = createReachAPI();
   const chain = createConnectorAPI();
   const address = stdlib.formatAddress(account.getAddress());
-  const [bigBal, assetUpdates] = await Promise.all([
+  const [bigBal] = await Promise.all([
     stdlib.balanceOf(account),
-    chain.loadAssets(address),
+    //chain.loadAssets(address),
   ]);
 
   persistUser(address);
@@ -75,8 +75,7 @@ async function hydrateUser(account: ReachAccount): Promise<ConnectedUserData> {
   return {
     account,
     address,
-    balance: bigBal,
-    ...assetUpdates,
+    balance: bigBal
   };
 }
 
