@@ -1,5 +1,5 @@
 {
-  "name": "@jackcom/reachduck",
+  "name": "@fraccas/reachduck-noassets",
   "version": "0.2.12",
   "description": "A front-end helper for your DApp.",
   "main": "lib/index.js",
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JACK-COM/reachduck.git"
+    "url": "https://github.com/Fraccas/reachduck-noassets.git"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",
