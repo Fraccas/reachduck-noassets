@@ -55,6 +55,7 @@ export async function fetchAccount(addr: string) {
   const Indexer = useIndexerClient();
   const result: any = await Indexer.lookupAccountByID(addr)
     .includeAll(false)
+    .exclude("all")
     .do()
     .catch(fallbackAcct);
   return result.account;

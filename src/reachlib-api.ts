@@ -166,25 +166,6 @@ export function parseCurrency(val: any, dec?: number) {
   return createReachAPI().parseCurrency(val, decimals);
 }
 
-/**
- * @reach_helper
- * Get token data and `acc`'s balance of token (if available) */
-export async function tokenMetadata(
-  tokenId: any,
-  acc: T.ReachAccount
-): Promise<T.ReachToken> {
-  const { balanceOf } = createReachAPI();
-  const fetchBalance = () => withTimeout(balanceOf(acc, tokenId));
-  const fetchToken = () => {
-    const chain = createConnectorAPI();
-    return withTimeout(chain.fetchAssetById(tokenId), null);
-  };
-  const [metadata, bal] = await Promise.all([fetchToken(), fetchBalance()]);
-  if (!metadata) throw new Error(`Token "${tokenId}" not found`);
-
-  return formatReachToken(tokenId, bal, metadata);
-}
-
 /* INTERNAL */
 
 // HELPER | cancel request if it takes too long
