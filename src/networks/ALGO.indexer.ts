@@ -54,28 +54,10 @@ export function useIndexerClient(): Indexer {
 export async function fetchAccount(addr: string) {
   const Indexer = useIndexerClient();
   const result: any = await Indexer.lookupAccountByID(addr)
+    .includeAll(false)
     .do()
     .catch(fallbackAcct);
   return result.account;
-}
-
-/**
- * Get asset given its `id`
- * @param assetId Asset id
- * @returns Asset object
- */
-export async function fetchAssetById(
-  assetId: number,
-  balance = 0
-): Promise<ReachToken | null> {
-  try {
-    const Indexer = useIndexerClient();
-    const data = await Indexer.lookupAssetByID(assetId).do();
-    if (data.asset) return formatAssetMetadata(data?.asset, balance);
-    return null;
-  } catch (error: any) {
-    return null;
-  }
 }
 
 /** Generate a `providerEnv` for stdlib */
@@ -87,20 +69,6 @@ export function getProviderEnv(
   return reachProviderEnv;
 }
 
-/**
- * Search for assets called `assetName`
- * @param name Name target
- * @returns List of assets roughly matching name
- */
-export async function searchAssetsByName(name: string): Promise<any[]> {
-  try {
-    const Indexer = useIndexerClient();
-    const assetInfo = await Indexer.searchForAssets().name(name).do();
-    return assetInfo?.assets.map((data: TokenRaw) => formatAssetMetadata(data));
-  } catch (error) {
-    return [];
-  }
-}
 
 /**
  * Search for transactions for `addr`
