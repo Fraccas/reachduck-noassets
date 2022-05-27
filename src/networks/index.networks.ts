@@ -20,7 +20,7 @@ export type NetworkInterface = {
   /** Returns a blockchain-specific configuration for `stdlib` */
   getProviderEnv(provider?: NetworkProvider & string): any;
   /** Search for transactions for this `addr` */
-  searchForTransactions(addr: string, opts?: any): any;
+  //searchForTransactions(addr: string, opts?: any): any;
 };
 
 export const NETWORKS: NetworksMap = {
@@ -75,7 +75,6 @@ function makeAPI(
     chain,
     fetchAccount: () => unImpl("fetchAccount"),
     getProviderEnv: () => ({}),
-    searchForTransactions: emptyList,
 
     // override with any custom implementation
     ...overrides,

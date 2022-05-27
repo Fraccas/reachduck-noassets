@@ -58,6 +58,7 @@ export async function fetchAccount(addr: string) {
     .exclude("all")
     .do()
     .catch(fallbackAcct);
+  console.log('HERE HERE: ' + result.account);
   return result.account;
 }
 

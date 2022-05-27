@@ -1,13 +1,11 @@
 import {
   fetchAccount,
-  getProviderEnv,
-  searchForTransactions
+  getProviderEnv
 } from "./ALGO.indexer";
 
 export const AlgoInterface = {
   fetchAccount: getAccount,
-  getProviderEnv,
-  searchForTransactions,
+  getProviderEnv
 };
 
 export default AlgoInterface;
